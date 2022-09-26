@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:50:29 by matcardo          #+#    #+#             */
-/*   Updated: 2022/09/25 04:29:57 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/09/26 03:56:07 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@
 # include <unistd.h>
 //delete ta aqui para debugar com printf
 # include <stdio.h>
+
+typedef struct s_stack
+{
+	int				content;
+	struct s_stack	*next;
+}	t_stack;
+
+typedef struct s_data
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		size_a;
+	int		size_b;
+}	t_data;
 
 void	fct(void);
 

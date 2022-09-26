@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 04:27:39 by matcardo          #+#    #+#             */
-/*   Updated: 2022/09/25 04:34:12 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/09/25 19:34:21 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	fct(void)
 {
-	ft_putstr_fd("Hello word!", 1);
+	ft_putstr_fd("Hello word!\n", 1);
 }
