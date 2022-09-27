@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:50:29 by matcardo          #+#    #+#             */
-/*   Updated: 2022/09/26 03:56:07 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:37:58 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_data
 	int		size_b;
 }	t_data;
 
-void	fct(void);
+void	print_stack(t_data *data);
+//utils
+void	*convert_int(const char *nptr, int *target);
+void	exit_error(t_data *data);
+//lst_utils
+t_stack	*lstnew(int n);
+void	lstadd_front(t_stack **lst, t_stack *new);
 
 #endif
