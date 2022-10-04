@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:50:29 by matcardo          #+#    #+#             */
-/*   Updated: 2022/09/27 19:37:58 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:52:57 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ typedef struct s_data
 }	t_data;
 
 void	print_stack(t_data *data);
+//Operations
+void	stack_operation(t_data *data, const char *op);
 //utils
 void	*convert_int(const char *nptr, int *target);
 void	exit_error(t_data *data);
 //lst_utils
 t_stack	*lstnew(int n);
+t_stack	*lstlast(t_stack *lst);
+t_stack	*lstlastbutone(t_stack *lst);
 void	lstadd_front(t_stack **lst, t_stack *new);
-
+void	lstadd_back(t_stack **lst, t_stack *new);
 #endif
