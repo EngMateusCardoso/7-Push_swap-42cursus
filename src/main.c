@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:44:48 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/15 22:47:30 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/16 05:46:14 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 void	resume_numbers_stack(t_stack *stack)
 {
 	t_stack	*sort_stack;
+	t_stack	*temp_sort_stack;
 	t_stack	*temp_stack;
 	int		i;
+	int 	temp;
 
 	sort_stack = sort_numbers(stack);
 	temp_stack = stack;
-	print_stack_2(stack);
-	print_stack_2(sort_stack);
-	i = 0;
-	while(sort_stack)
+	while(temp_stack)
 	{
-		while(temp_stack)
+		i = 0;
+		temp = temp_stack->content;
+		temp_sort_stack = sort_stack;
+		while(temp_sort_stack)
 		{
-			if (temp_stack->content == sort_stack->content)
+			if (temp == temp_sort_stack->content)
 				temp_stack->content = i;
-			temp_stack = temp_stack->next;
+			temp_sort_stack = temp_sort_stack->next;
+			i++;
 		}
-		temp_stack = stack;
-		sort_stack = sort_stack->next;
-		i++;
+		temp_stack = temp_stack->next;
 	}
 	print_stack_2(stack);
 	//free_stack(sort_stack);
