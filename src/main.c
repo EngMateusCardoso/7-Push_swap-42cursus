@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:44:48 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/16 05:46:14 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/16 05:58:36 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	resume_numbers_stack(t_stack *stack)
 		}
 		temp_stack = temp_stack->next;
 	}
-	print_stack_2(stack);
-	//free_stack(sort_stack);
+	free_stack(&sort_stack);
 }
 
 void	init_data(t_data *data, int size, char **argv)
@@ -69,9 +68,9 @@ int	main(int argc, char **argv)
 	if (argc <= 2)
 		exit(EXIT_SUCCESS);
 	init_data(&data, argc, argv);
-	// print_stack(&data); // vai sair
-	// printf("-%d-\n", argc);
 	resume_numbers_stack(data.stack_a);
 	// print_stack(&data); // vai sair
+	// printf("-%d-\n", argc);
+	print_stack_2(data.stack_a); // vai sair
 	return (0);
 }

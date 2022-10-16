@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:50:29 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/15 22:21:19 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/16 05:56:41 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	stack_operation(t_data *data, const char *op);
 //utils
 void	*convert_int(const char *nptr, int *target);
 void	exit_error(t_data *data);
+void	free_stack(t_stack **stack);
 //lst_utils
 t_stack	*lstnew(int n);
 t_stack	*lstlast(t_stack *lst);

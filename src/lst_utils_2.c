@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:39:05 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/15 22:46:20 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/16 05:58:48 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,16 @@ t_stack *sort_numbers(t_stack *stack)
 		temp_stack_1 = temp_stack_1->next;
 	}
 	return (sort_stack);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack *temp;
+
+	while(*stack)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
 }
