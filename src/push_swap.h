@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:50:29 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/16 05:56:41 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:42:32 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ typedef struct s_data
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		size_a;
-	int		size_b;
+	int		size;
 }	t_data;
 
 void	print_stack(t_data *data);
@@ -47,6 +46,7 @@ t_stack	*lstlast(t_stack *lst);
 t_stack	*lstlastbutone(t_stack *lst);
 void	lstadd_front(t_stack **lst, t_stack *new);
 void	lstadd_back(t_stack **lst, t_stack *new);
-t_stack *sort_numbers(t_stack *stack);
+t_stack *selection_sort_stack(t_stack *stack);
+int		have_duplicates(t_stack *stack);
 
 #endif

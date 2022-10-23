@@ -6,13 +6,33 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:39:05 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/16 05:58:48 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:42:26 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	copy_stack(t_stack *src, t_stack **dts)
+int		have_duplicates(t_stack *stack)
+{
+	t_stack *search_stack;
+	t_stack *check_stack;
+
+	search_stack = stack;
+	while (search_stack)
+	{
+		check_stack = search_stack->next;
+		while (check_stack)
+		{
+			if (search_stack->content == check_stack->content)
+				return (1);
+			check_stack = check_stack->next;	
+		}
+		search_stack = search_stack->next;
+	}
+	return (0);
+}
+
+void	copy_stack(t_stack *src, t_stack **dst)
 {
 	t_stack	*temp_stack;
 	t_stack	*new;
@@ -26,10 +46,10 @@ void	copy_stack(t_stack *src, t_stack **dts)
 		lstadd_back(&target, new);
 		temp_stack = temp_stack->next;
 	}
-	*dts = target;
+	*dst = target;
 }
 
-t_stack *sort_numbers(t_stack *stack)
+t_stack *selection_sort_stack(t_stack *stack)
 {
 	t_stack	*temp_stack_1;
 	t_stack	*temp_stack_2;

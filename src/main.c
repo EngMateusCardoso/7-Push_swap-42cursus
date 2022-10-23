@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:44:48 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/16 05:58:36 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:44:13 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	resume_numbers_stack(t_stack *stack)
 	int		i;
 	int 	temp;
 
-	sort_stack = sort_numbers(stack);
+	sort_stack = selection_sort_stack(stack);
 	temp_stack = stack;
 	while(temp_stack)
 	{
@@ -45,8 +45,7 @@ void	init_data(t_data *data, int size, char **argv)
 	int 	nbr;
 
 	size--;
-	data->size_a = size;
-	data->size_b = 0;
+	data->size = size;
 	data->stack_a = NULL;
 	data->stack_b = NULL;
 	while (size > 0)
@@ -59,6 +58,9 @@ void	init_data(t_data *data, int size, char **argv)
 		lstadd_front(&(data->stack_a), temp);
 		size--;
 	}
+	if (have_duplicates(data->stack_a))
+		exit_error(data);
+	resume_numbers_stack(data->stack_a);
 }
 
 int	main(int argc, char **argv)
@@ -68,7 +70,7 @@ int	main(int argc, char **argv)
 	if (argc <= 2)
 		exit(EXIT_SUCCESS);
 	init_data(&data, argc, argv);
-	resume_numbers_stack(data.stack_a);
+	// push_swap(data);
 	// print_stack(&data); // vai sair
 	// printf("-%d-\n", argc);
 	print_stack_2(data.stack_a); // vai sair
