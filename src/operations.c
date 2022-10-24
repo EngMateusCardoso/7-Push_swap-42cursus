@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:11:51 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/04 16:07:49 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/24 04:36:18 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	reverse_rotate(t_data *data, const char *op)
 	}
 }
 
-void	stack_operation(t_data *data, const char *op)
+void	stack_operation(t_data *data, char *op)
 {
 	if (op[0] == 's')
 		swap(data, op);
@@ -104,4 +104,6 @@ void	stack_operation(t_data *data, const char *op)
 		rotate(data, op);
 	else if (op[0] == 'r' && op[1] == 'r' && ft_strlen(op) == 3)
 		reverse_rotate(data, op);
+	ft_putstr_fd(op, 1);
+	ft_putchar_fd('\n',1);
 }

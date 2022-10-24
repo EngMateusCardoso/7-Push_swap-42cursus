@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils_01.c                               :+:      :+:    :+:   */
+/*   4-push_swap_utils_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:52:44 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/23 06:15:29 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:52:48 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,4 @@ void	*convert_int(const char *nptr,int *target)
 	else
 		*target = result * sign;
 	return (target);
-}
-
-void	exit_error(t_data *data)
-{
-	if (data->stack_a)
-		free_stack(&(data->stack_a));
-	if (data->stack_b)
-		free_stack(&(data->stack_b));
-	ft_putstr_fd("Error\n",1);
-	exit(EXIT_FAILURE);
 }

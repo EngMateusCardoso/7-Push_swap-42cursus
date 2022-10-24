@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   1-main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:44:48 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/23 06:44:13 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/24 06:42:10 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ void	init_data(t_data *data, int size, char **argv)
 	resume_numbers_stack(data->stack_a);
 }
 
+void	push_swap(t_data *data)
+{
+	if (data->size == 2)
+		sort_two(data);
+	else if (data->size == 3)
+		sort_three(data);
+	else if (data->size == 4)
+		sort_four(data, 0);
+	else if (data->size == 5)
+		sort_five(data);
+	else 
+		big_sort(data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -70,7 +84,7 @@ int	main(int argc, char **argv)
 	if (argc <= 2)
 		exit(EXIT_SUCCESS);
 	init_data(&data, argc, argv);
-	// push_swap(data);
+	push_swap(&data);
 	// print_stack(&data); // vai sair
 	// printf("-%d-\n", argc);
 	print_stack_2(data.stack_a); // vai sair

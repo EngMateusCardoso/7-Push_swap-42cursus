@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils_2.c                                      :+:      :+:    :+:   */
+/*   3-lst_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:39:05 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/23 06:42:26 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:52:57 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,14 @@ void	free_stack(t_stack **stack)
 		*stack = (*stack)->next;
 		free(temp);
 	}
+}
+
+void	exit_error(t_data *data)
+{
+	if (data->stack_a)
+		free_stack(&(data->stack_a));
+	if (data->stack_b)
+		free_stack(&(data->stack_b));
+	ft_putstr_fd("Error\n",1);
+	exit(EXIT_FAILURE);
 }
