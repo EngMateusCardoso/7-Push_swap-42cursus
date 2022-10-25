@@ -5,17 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 18:39:05 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/23 06:52:57 by matcardo         ###   ########.fr       */
+/*   Created: 2022/10/25 00:39:26 by matcardo          #+#    #+#             */
+/*   Updated: 2022/10/25 20:36:57 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		have_duplicates(t_stack *stack)
+int	lstsize(t_stack	*stack)
 {
-	t_stack *search_stack;
-	t_stack *check_stack;
+	if (!stack)
+		return (0);
+	return (lstsize(stack->next) + 1);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*temp;
+
+	while (*stack)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+}
+
+int	have_duplicates(t_stack *stack)
+{
+	t_stack	*search_stack;
+	t_stack	*check_stack;
 
 	search_stack = stack;
 	while (search_stack)
@@ -25,7 +44,7 @@ int		have_duplicates(t_stack *stack)
 		{
 			if (search_stack->content == check_stack->content)
 				return (1);
-			check_stack = check_stack->next;	
+			check_stack = check_stack->next;
 		}
 		search_stack = search_stack->next;
 	}
@@ -49,7 +68,7 @@ void	copy_stack(t_stack *src, t_stack **dst)
 	*dst = target;
 }
 
-t_stack *selection_sort_stack(t_stack *stack)
+t_stack	*selection_sort_stack(t_stack *stack)
 {
 	t_stack	*temp_stack_1;
 	t_stack	*temp_stack_2;
@@ -75,26 +94,4 @@ t_stack *selection_sort_stack(t_stack *stack)
 		temp_stack_1 = temp_stack_1->next;
 	}
 	return (sort_stack);
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack *temp;
-
-	while(*stack)
-	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp);
-	}
-}
-
-void	exit_error(t_data *data)
-{
-	if (data->stack_a)
-		free_stack(&(data->stack_a));
-	if (data->stack_b)
-		free_stack(&(data->stack_b));
-	ft_putstr_fd("Error\n",1);
-	exit(EXIT_FAILURE);
 }

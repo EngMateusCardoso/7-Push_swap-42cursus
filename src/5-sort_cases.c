@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_cases.c                                       :+:      :+:    :+:   */
+/*   5-sort_cases.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:47:33 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/24 02:42:12 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:46:29 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	sort_three(t_data *data)
 	}
 }
 
-int	is_shorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	int		i;
 	t_stack	*check_stack;
@@ -71,7 +71,7 @@ void	sort_four(t_data *data, int less_content_stack_a)
 	}
 	else if (data->stack_a->next->next->next->content == less_content_stack_a)
 		stack_operation(data, "rra");
-	if (!is_shorted(data->stack_a))
+	if (!is_sorted(data->stack_a))
 	{
 		stack_operation(data, "pb");
 		sort_three(data);
@@ -95,7 +95,7 @@ void	sort_five(t_data *data)
 	}
 	else if (data->stack_a->next->next->next->next->content == 0)
 		stack_operation(data, "rra");
-	if (!is_shorted(data->stack_a))
+	if (!is_sorted(data->stack_a))
 	{
 		stack_operation(data, "pb");
 		sort_four(data, 1);

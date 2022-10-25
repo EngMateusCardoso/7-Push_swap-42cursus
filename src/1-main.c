@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:44:48 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/24 06:42:10 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:45:13 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	resume_numbers_stack(t_stack *stack)
 	t_stack	*temp_sort_stack;
 	t_stack	*temp_stack;
 	int		i;
-	int 	temp;
+	int		temp;
 
 	sort_stack = selection_sort_stack(stack);
 	temp_stack = stack;
-	while(temp_stack)
+	while (temp_stack)
 	{
 		i = 0;
 		temp = temp_stack->content;
 		temp_sort_stack = sort_stack;
-		while(temp_sort_stack)
+		while (temp_sort_stack)
 		{
 			if (temp == temp_sort_stack->content)
 				temp_stack->content = i;
@@ -39,15 +39,11 @@ void	resume_numbers_stack(t_stack *stack)
 	free_stack(&sort_stack);
 }
 
-void	init_data(t_data *data, int size, char **argv)
+void	init_stack(t_data *data, int size, char **argv)
 {
 	t_stack	*temp;
-	int 	nbr;
+	int		nbr;
 
-	size--;
-	data->size = size;
-	data->stack_a = NULL;
-	data->stack_b = NULL;
 	while (size > 0)
 	{
 		if (!convert_int(argv[size], &nbr))
@@ -58,13 +54,37 @@ void	init_data(t_data *data, int size, char **argv)
 		lstadd_front(&(data->stack_a), temp);
 		size--;
 	}
-	if (have_duplicates(data->stack_a))
-		exit_error(data);
-	resume_numbers_stack(data->stack_a);
+}
+
+void	init_data(t_data *data, int size, char **argv)
+{
+	size--;
+	data->size = size;
+	data->stack_a = NULL;
+	data->stack_b = NULL;
+	if (size <= 100)
+	{
+		data->n_chunks = 5;
+		if (!(size % 5))
+			data->chunk_size = size / 5;
+		else
+			data->chunk_size = size / 5 + 1;
+	}
+	else
+	{
+		data->n_chunks = 11;
+		if (!(size % 11))
+			data->chunk_size = size / 11;
+		else
+			data->chunk_size = size / 11 + 1;
+	}
+	init_stack(data, size, argv);
 }
 
 void	push_swap(t_data *data)
 {
+	if (data->size == 1)
+		exit(EXIT_SUCCESS);
 	if (data->size == 2)
 		sort_two(data);
 	else if (data->size == 3)
@@ -73,7 +93,7 @@ void	push_swap(t_data *data)
 		sort_four(data, 0);
 	else if (data->size == 5)
 		sort_five(data);
-	else 
+	else
 		big_sort(data);
 }
 
@@ -81,12 +101,13 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc <= 2)
+	if (argc == 1)
 		exit(EXIT_SUCCESS);
 	init_data(&data, argc, argv);
-	push_swap(&data);
-	// print_stack(&data); // vai sair
-	// printf("-%d-\n", argc);
-	print_stack_2(data.stack_a); // vai sair
+	if (have_duplicates(data.stack_a))
+		exit_error(&data);
+	resume_numbers_stack(data.stack_a);
+	if (!is_sorted(data.stack_a))
+		push_swap(&data);
 	return (0);
 }

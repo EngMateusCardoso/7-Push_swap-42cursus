@@ -6,7 +6,7 @@
 #    By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/10 02:09:58 by matcardo          #+#    #+#              #
-#    Updated: 2022/09/25 04:22:50 by matcardo         ###   ########.fr        #
+#    Updated: 2022/10/24 22:59:36 by matcardo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ clean:
 			$(RM) $(OBJS_DIR_BONUS)
 			@printf "$(RE)push_swap objects removed!$(RC)\n\n"
 
-fclean:	clean
+fclean:		clean
 			make -C ./libraries/libft fclean
 			$(RM) $(NAME)
 			@printf "$(RE)push_swap executables removed!$(RC)\n\n"

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   8-operations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:11:51 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/24 04:36:18 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:39:53 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_data *data, const char *op)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (op[1] == 'a' || op[1] == 's')
 	{
@@ -34,7 +34,7 @@ void	swap(t_data *data, const char *op)
 
 void	push(t_data *data, const char *op)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (op[1] == 'a')
 	{
@@ -54,7 +54,7 @@ void	push(t_data *data, const char *op)
 
 void	rotate(t_data *data, const char *op)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (op[1] == 'a' || op[1] == 'r')
 	{
@@ -62,7 +62,6 @@ void	rotate(t_data *data, const char *op)
 		data->stack_a->next = NULL;
 		lstadd_back(&temp, data->stack_a);
 		data->stack_a = temp;
-		
 	}
 	if (op[1] == 'b' || op[1] == 'r')
 	{
@@ -75,7 +74,7 @@ void	rotate(t_data *data, const char *op)
 
 void	reverse_rotate(t_data *data, const char *op)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (op[2] == 'a' || op[2] == 'r')
 	{
@@ -83,7 +82,6 @@ void	reverse_rotate(t_data *data, const char *op)
 		lstlastbutone(data->stack_a)->next = NULL;
 		temp->next = data->stack_a;
 		data->stack_a = temp;
-		
 	}
 	if (op[2] == 'b' || op[2] == 'r')
 	{
@@ -105,5 +103,5 @@ void	stack_operation(t_data *data, char *op)
 	else if (op[0] == 'r' && op[1] == 'r' && ft_strlen(op) == 3)
 		reverse_rotate(data, op);
 	ft_putstr_fd(op, 1);
-	ft_putchar_fd('\n',1);
+	ft_putchar_fd('\n', 1);
 }
