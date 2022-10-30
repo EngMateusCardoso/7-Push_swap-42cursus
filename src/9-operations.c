@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:11:51 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/25 20:39:53 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/26 02:49:18 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,20 @@ void	reverse_rotate(t_data *data, const char *op)
 	}
 }
 
-void	stack_operation(t_data *data, char *op)
+void	stack_operations(t_data *data, char *op, int n_moves)
 {
-	if (op[0] == 's')
-		swap(data, op);
-	else if (op[0] == 'p')
-		push(data, op);
-	else if (op[0] == 'r' && ft_strlen(op) == 2)
-		rotate(data, op);
-	else if (op[0] == 'r' && op[1] == 'r' && ft_strlen(op) == 3)
-		reverse_rotate(data, op);
-	ft_putstr_fd(op, 1);
-	ft_putchar_fd('\n', 1);
+	while (n_moves)
+	{
+		if (op[0] == 's')
+			swap(data, op);
+		else if (op[0] == 'p')
+			push(data, op);
+		else if (op[0] == 'r' && ft_strlen(op) == 2)
+			rotate(data, op);
+		else if (op[0] == 'r' && op[1] == 'r' && ft_strlen(op) == 3)
+			reverse_rotate(data, op);
+		ft_putstr_fd(op, 1);
+		ft_putchar_fd('\n', 1);
+		n_moves--;
+	}
 }

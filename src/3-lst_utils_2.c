@@ -6,17 +6,46 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:39:26 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/25 20:36:57 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/29 08:05:51 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	lstsize(t_stack	*stack)
+int	lstsize(t_stack *stack)
 {
 	if (!stack)
 		return (0);
 	return (lstsize(stack->next) + 1);
+}
+
+int	find_content(t_stack *stack, int position)
+{
+	t_stack	*node;
+
+	node = stack;
+	while (position-- > 0)
+		node = node->next;
+	return (node->content);
+}
+
+int	find_position(t_stack *stack, int to_find)
+{
+	int		count;
+	int		position;
+	t_stack	*temp;
+
+	position = -1;
+	count = 0;
+	temp = stack;
+	while (temp)
+	{
+		if (temp->content == to_find)
+			position = count;
+		temp = temp->next;
+		count++;
+	}
+	return (position);
 }
 
 void	free_stack(t_stack **stack)
@@ -49,49 +78,4 @@ int	have_duplicates(t_stack *stack)
 		search_stack = search_stack->next;
 	}
 	return (0);
-}
-
-void	copy_stack(t_stack *src, t_stack **dst)
-{
-	t_stack	*temp_stack;
-	t_stack	*new;
-	t_stack	*target;	
-
-	target = lstnew(src->content);
-	temp_stack = src->next;
-	while (temp_stack)
-	{
-		new = lstnew(temp_stack->content);
-		lstadd_back(&target, new);
-		temp_stack = temp_stack->next;
-	}
-	*dst = target;
-}
-
-t_stack	*selection_sort_stack(t_stack *stack)
-{
-	t_stack	*temp_stack_1;
-	t_stack	*temp_stack_2;
-	t_stack	*sort_stack;
-	t_stack	*min_node;
-	int		temp;
-
-	copy_stack(stack, &sort_stack);
-	temp_stack_1 = sort_stack;
-	while (temp_stack_1)
-	{
-		min_node = temp_stack_1;
-		temp_stack_2 = temp_stack_1->next;
-		while (temp_stack_2)
-		{
-			if (temp_stack_2->content < min_node->content)
-				min_node = temp_stack_2;
-			temp_stack_2 = temp_stack_2->next;
-		}
-		temp = temp_stack_1->content;
-		temp_stack_1->content = min_node->content;
-		min_node->content = temp;
-		temp_stack_1 = temp_stack_1->next;
-	}
-	return (sort_stack);
 }

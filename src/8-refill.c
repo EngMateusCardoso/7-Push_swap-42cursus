@@ -6,21 +6,11 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 09:16:49 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/25 19:51:53 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/30 00:54:18 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	move_for_pa(t_data *data, int n_moves, char *type_rotate)
-{
-	while (n_moves)
-	{
-		stack_operation(data, type_rotate);
-		n_moves--;
-	}
-	stack_operation(data, "pa");
-}
 
 int	rb_needed_refill(t_stack *stack, int number)
 {
@@ -73,10 +63,11 @@ void	refill(t_data *data)
 		rb_mvs = rb_needed_refill(data->stack_b, max_num);
 		rrb_mvs = rrb_needed_refill(data->stack_b, max_num);
 		if (rb_mvs <= rrb_mvs)
-			move_for_pa(data, rb_mvs, "rb");
+			stack_operations(data, "rb", rb_mvs);
 		else
-			move_for_pa(data, rrb_mvs, "rrb");
+			stack_operations(data, "rrb", rrb_mvs);
+		stack_operations(data, "pa", 1);
 		max_num--;
 	}
-	stack_operation(data, "pa");
+	stack_operations(data, "pa", 1);
 }
