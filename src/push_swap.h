@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:50:29 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/30 00:17:26 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/30 04:11:13 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ typedef struct s_data
 	int		size;
 	int		chunk_size;
 	int		n_chunks;
+	int		is_a_test;
+	int		count_commands;
 }	t_data;
 
+//1-push_swap.c
+void	push_swap(t_data *data, int argc, char **argv);
 //lst_utils_1.c
 t_stack	*lstnew(int n);
 t_stack	*lstlast(t_stack *lst);
@@ -68,7 +72,5 @@ void	exec_adapt_stack_b_optimized(t_data *data, int option,
 void	refill(t_data *data);
 //Operations.c
 void	stack_operations(t_data *data, char *op, int n_moves);
-////////////
-// void	print_stack(t_data *data);
-///////////
+
 #endif

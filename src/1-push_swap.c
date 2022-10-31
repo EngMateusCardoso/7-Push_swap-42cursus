@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1-main.c                                           :+:      :+:    :+:   */
+/*   1-push_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 01:44:48 by matcardo          #+#    #+#             */
-/*   Updated: 2022/10/30 02:44:46 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/10/30 14:48:25 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,18 @@ void	init_data(t_data *data, int size, char **argv)
 	data->size = size;
 	data->stack_a = NULL;
 	data->stack_b = NULL;
-	if (size <= 100)
+	if (size > 5)
 	{
-		data->n_chunks = 5;
-		if (!(size % 5))
-			data->chunk_size = size / 5;
+		if (!(size % data->n_chunks))
+			data->chunk_size = size / data->n_chunks;
 		else
-			data->chunk_size = size / 5 + 1;
+			data->chunk_size = size / data->n_chunks + 1;
 	}
-	else
-	{
-		data->n_chunks = 11;
-		if (!(size % 11))
-			data->chunk_size = size / 11;
-		else
-			data->chunk_size = size / 11 + 1;
-	}
+	data->count_commands = 0;
 	init_stack(data, size, argv);
 }
 
-void	push_swap(t_data *data)
+void	sort_push_swap(t_data *data)
 {
 	if (data->size == 1)
 		exit(EXIT_SUCCESS);
@@ -97,18 +89,15 @@ void	push_swap(t_data *data)
 		big_sort(data);
 }
 
-int	main(int argc, char **argv)
+void	push_swap(t_data *data, int argc, char **argv)
 {
-	t_data	data;
-
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
-	init_data(&data, argc, argv);
-	if (have_duplicates(data.stack_a))
-		exit_error(&data);
-	resume_numbers_stack(data.stack_a);
-	if (!is_sorted(data.stack_a))
-		push_swap(&data);
-	free_stack(&data.stack_a);
-	return (0);
+	init_data(data, argc, argv);
+	if (have_duplicates(data->stack_a))
+		exit_error(data);
+	resume_numbers_stack(data->stack_a);
+	if (!is_sorted(data->stack_a))
+		sort_push_swap(data);
+	free_stack(&data->stack_a);
 }
