@@ -16,5 +16,5 @@ The objective of this project is to create in C an algorithm that sorts a set of
 - rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
 - rrr : rra and rrb at the same time
 
-INPUTS: A set of numbers.\n
+INPUTS: A set of numbers.<br>
 OUTPUTS: A set of operations.
